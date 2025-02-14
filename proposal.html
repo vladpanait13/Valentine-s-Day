@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffd1ff);
+            font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            color: #ff4b6e;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s
+        }
+
+        #yesBtn {
+            background: #ff4b6e;
+            color: white;
+        }
+
+        #noBtn {
+            background: #ff8da1;
+            color:white;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2)
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: fall linear infinite;;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+        
+    </style>
+</head>
+    <body>
+        <div class="hearts" id="hearts"></div>
+        <div class="container">
+            <h1>Will you be my Valentine? 💝</h1>
+            <div class="buttons">
+                <button id="yesBtn" onclick="celebrate()">Yes 💖</button>
+                <button id="noBtn" onmouseover="moveButton(this)">No 💔</button>
+            </div>
+        </div>
+    
+        <script>
+            // Create falling hearts background
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.getElementById('hearts').appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+    
+            setInterval(createHeart, 300);
+    
+            // Make the No button run away
+            function moveButton(btn) {
+                btn.style.position = 'absolute';
+                btn.style.left = Math.random() * (window.innerWidth - btn.offsetWidth) + 'px';
+                btn.style.top = Math.random() * (window.innerHeight - btn.offsetHeight) + 'px';
+            }
+    
+            // Celebration when Yes is clicked
+            function celebrate() {
+                alert('Yay! Happy Valentine\'s Day! 💖');
+                for(let i = 0; i < 20; i++) {
+                    setTimeout(createHeart, i * 100);
+                }
+            }
+        </script>
+</body>
+</html>

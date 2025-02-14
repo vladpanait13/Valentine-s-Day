@@ -1,0 +1,11 @@
+body {
+    background-color: rgba(228,182,191,255);
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Added a cute text font */
+    color: rgb(182, 66, 66); /* Changed the text color to white */
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
